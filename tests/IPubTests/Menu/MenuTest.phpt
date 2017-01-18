@@ -92,6 +92,19 @@ class MenuTest extends Tester\TestCase
 				'user@guest'
 			],
 		]);
+
+		$this->menuManager->addItem('test-menu', 'item-four', 'Sub Item 2', [
+			'parentId' => 'item-one',
+			'label' => 'Sub Item 2 label',
+			'target'   => ':Test:itemFour',
+			'active'   => [
+				':Test:itemOne',
+				':Test:itemFour',
+			],
+			'access'   => [
+				'user@loggedIn'
+			],
+		]);
 	}
 
 	public function testMenuContainer()
