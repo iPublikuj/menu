@@ -119,10 +119,8 @@ class MenuTest extends Tester\TestCase
 
 		Assert::count(1, $node->getChildren());
 
+		/** @var Entities\Nodes\Node $rootNode */
 		$rootNode = $this->menuManager->getTree('test-menu');
-
-		/** @var Entities\Nodes\Node $node */
-		$node = reset($nodes);
 
 		Assert::count(2, $rootNode->getChildren());
 
