@@ -119,6 +119,11 @@ class MenuTest extends Tester\TestCase
 
 		Assert::count(1, $node->getChildren());
 
+		Assert::true($node instanceof Entities\Nodes\Node);
+		Assert::true($node->getItem() instanceof Entities\Items\IItem);
+		Assert::same('item-one', $node->getId());
+		Assert::same('Item 1', $node->getName());
+
 		/** @var Entities\Nodes\Node $rootNode */
 		$rootNode = $this->menuManager->getTree('test-menu');
 
@@ -126,10 +131,8 @@ class MenuTest extends Tester\TestCase
 
 		Assert::true($rootNode instanceof Entities\Nodes\Node);
 		Assert::true($rootNode->getItem() instanceof Entities\Items\IItem);
-		Assert::same(Entities\Items\IItem::ROOT_ID, $node->getId());
-		Assert::same(Entities\Items\IItem::ROOT_NAME, $node->getName());
-
-		Assert::count(1, $node->getChildren());
+		Assert::same(Entities\Items\IItem::ROOT_ID, $rootNode->getId());
+		Assert::same(Entities\Items\IItem::ROOT_NAME, $rootNode->getName());
 	}
 
 	/**
