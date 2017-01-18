@@ -39,6 +39,11 @@ class MenuTest extends Tester\TestCase
 	private $presenterFactory;
 
 	/**
+	 * @var Application\Application
+	 */
+	private $application;
+
+	/**
 	 * @var Menu\Managers\MenuManager
 	 */
 	private $menuManager;
@@ -54,6 +59,8 @@ class MenuTest extends Tester\TestCase
 
 		// Get presenter factory from container
 		$this->presenterFactory = $dic->getByType(Application\IPresenterFactory::class);
+
+		$this->application = $dic->getByType(Application\Application::class);
 
 		// Get extension services
 		$this->menuManager = $dic->getService('menu.managers.menus');
@@ -108,15 +115,12 @@ class MenuTest extends Tester\TestCase
 
 	public function testMenuTree()
 	{
-		/** @var TestPresenter $presenter */
-		$presenter = $this->createPresenter();
-
 		// Create GET request
 		$request = new Application\Request('Test', 'GET', ['action' => 'default']);
 		// & fire presenter
-		$presenter->run($request);
+		$this->application->processRequest($request);
 
-		$nodes = $presenter->getMenuManager()->getTree('test-menu');
+		$nodes = $this->menuManager->getTree('test-menu');
 
 		Assert::count(4, $nodes);
 
