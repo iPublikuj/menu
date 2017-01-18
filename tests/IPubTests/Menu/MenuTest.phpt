@@ -115,7 +115,7 @@ class MenuTest extends Tester\TestCase
 		Assert::true($menuContainer instanceof Entities\Menus\IMenu);
 		Assert::same('test-menu', $menuContainer->getId());
 		Assert::same('test-menu', $menuContainer->getName());
-		Assert::count(3, $menuContainer->getItems());
+		Assert::count(4, $menuContainer->getItems());
 	}
 
 	public function testMenuTree()
