@@ -8,7 +8,7 @@
  * @author         Adam Kadlec http://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Tests
- * @since          2.1.1
+ * @since          2.0.0
  *
  * @date           15.01.17
  */

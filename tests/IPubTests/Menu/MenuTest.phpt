@@ -29,6 +29,7 @@ use IPub\Menu;
 use IPub\Menu\Entities;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
+require __DIR__ . DS . 'libs' . DS . 'RouterFactory.php';
 
 class MenuTest extends Tester\TestCase
 {
