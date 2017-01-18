@@ -114,21 +114,22 @@ class MenuTest extends Tester\TestCase
 		// & fire presenter
 		$this->application->processRequest($request);
 
-		$nodes = $this->menuManager->getTree('test-menu', ['root' => 'item-one']);
+		/** @var Entities\Nodes\Node $node */
+		$node = $this->menuManager->getTree('test-menu', ['root' => 'item-one']);
 
-		Assert::count(1, $nodes);
+		Assert::count(1, $node->getChildren());
 
-		$nodes = $this->menuManager->getTree('test-menu');
-
-		Assert::count(2, $nodes);
+		$rootNode = $this->menuManager->getTree('test-menu');
 
 		/** @var Entities\Nodes\Node $node */
 		$node = reset($nodes);
 
-		Assert::true($node instanceof Entities\Nodes\Node);
-		Assert::true($node->getItem() instanceof Entities\Items\IItem);
-		Assert::same('item-one', $node->getId());
-		Assert::same('Item 1', $node->getName());
+		Assert::count(2, $rootNode->getChildren());
+
+		Assert::true($rootNode instanceof Entities\Nodes\Node);
+		Assert::true($rootNode->getItem() instanceof Entities\Items\IItem);
+		Assert::same(Entities\Items\IItem::ROOT_ID, $node->getId());
+		Assert::same(Entities\Items\IItem::ROOT_NAME, $node->getName());
 
 		Assert::count(1, $node->getChildren());
 	}
