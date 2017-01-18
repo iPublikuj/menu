@@ -64,7 +64,7 @@ final class MenuExtension extends DI\CompilerExtension
 			->addTag('cms.menu');
 
 		// Menu priority filter
-		$builder->addDefinition('filters.priority')
+		$builder->addDefinition($this->prefix('filters.priority'))
 			->setClass(Filters\Priority\Filter::class)
 			->setImplement(Filters\Priority\IFilter::class)
 			->setInject(TRUE)
@@ -72,7 +72,7 @@ final class MenuExtension extends DI\CompilerExtension
 			->addTag(self::TAG_MENU_FILTER, 10);
 
 		// Menu link filter
-		$builder->addDefinition('filters.link')
+		$builder->addDefinition($this->prefix('filters.link'))
 			->setClass(Filters\Link\Filter::class)
 			->setImplement(Filters\Link\IFilter::class)
 			->setInject(TRUE)
@@ -80,7 +80,7 @@ final class MenuExtension extends DI\CompilerExtension
 			->addTag(self::TAG_MENU_FILTER, 15);
 
 		// Menu status filter
-		$builder->addDefinition('filters.status')
+		$builder->addDefinition($this->prefix('filters.status'))
 			->setClass(Filters\Status\Filter::class)
 			->setImplement(Filters\Status\IFilter::class)
 			->setInject(TRUE)
@@ -88,7 +88,7 @@ final class MenuExtension extends DI\CompilerExtension
 			->addTag(self::TAG_MENU_FILTER, 20);
 
 		// Menu access filter
-		$builder->addDefinition('filters.access')
+		$builder->addDefinition($this->prefix('filters.access'))
 			->setClass(Filters\Access\Filter::class)
 			->setImplement(Filters\Access\IFilter::class)
 			->setInject(TRUE)
