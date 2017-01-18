@@ -115,8 +115,6 @@ class MenuTest extends Tester\TestCase
 
 	public function testMenuTree()
 	{
-		$_SERVER['HTTP_HOST'] = $_SERVER['SERVER_NAME'] = 'ipulikuj.eu';
-
 		// Create GET request
 		$request = new Application\Request('Test', 'GET', ['action' => 'default']);
 		// & fire presenter
