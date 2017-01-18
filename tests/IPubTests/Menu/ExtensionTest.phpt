@@ -35,10 +35,10 @@ class ExtensionTest extends Tester\TestCase
 
 		Assert::true($dic->getService('menu.managers.menus') instanceof Menu\Managers\MenuManager);
 		Assert::true($dic->getService('menu.managers.filters') instanceof Menu\Managers\FiltersManager);
-		Assert::true($dic->getService('menu.filters.priority') instanceof Menu\Filters\Priority\Filter);
-		Assert::true($dic->getService('menu.filters.link') instanceof Menu\Filters\Link\Filter);
-		Assert::true($dic->getService('menu.filters.status') instanceof Menu\Filters\Status\Filter);
-		Assert::true($dic->getService('menu.filters.access') instanceof Menu\Filters\Access\Filter);
+		Assert::true($dic->getService('menu.filters.priority') instanceof Menu\Filters\Priority\IFilter);
+		Assert::true($dic->getService('menu.filters.link') instanceof Menu\Filters\Link\IFilter);
+		Assert::true($dic->getService('menu.filters.status') instanceof Menu\Filters\Status\IFilter);
+		Assert::true($dic->getService('menu.filters.access') instanceof Menu\Filters\Access\IFilter);
 	}
 
 	/**
