@@ -43,4 +43,12 @@ trait TMenu
 	{
 		$this->menuManager = $menuManager;
 	}
+
+	/**
+	 * @return Managers\MenuManager
+	 */
+	public function getMenuManager() : Managers\MenuManager
+	{
+		return $this->menuManager;
+	}
 }

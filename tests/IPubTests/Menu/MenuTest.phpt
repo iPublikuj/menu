@@ -108,7 +108,7 @@ class MenuTest extends Tester\TestCase
 
 	public function testMenuTree()
 	{
-		// Create test presenter
+		/** @var TestPresenter $presenter */
 		$presenter = $this->createPresenter();
 
 		// Create GET request
@@ -116,7 +116,7 @@ class MenuTest extends Tester\TestCase
 		// & fire presenter
 		$presenter->run($request);
 
-		$nodes = $this->menuManager->getTree('test-menu');
+		$nodes = $presenter->getMenuManager()->getTree('test-menu');
 
 		Assert::count(4, $nodes);
 
