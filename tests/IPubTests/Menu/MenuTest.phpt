@@ -86,12 +86,29 @@ class MenuTest extends Tester\TestCase
 
 	public function testMenuContainer()
 	{
+		/** @var Entities\Menus\IMenu $menuContainer */
 		$menuContainer = $this->menuManager->get('test-menu');
 
 		Assert::true($menuContainer instanceof Entities\Menus\IMenu);
 		Assert::same('test-menu', $menuContainer->getId());
 		Assert::same('test-menu', $menuContainer->getName());
 		Assert::count(3, $menuContainer->getItems());
+	}
+
+	public function testMenuTree()
+	{
+		$nodes = $this->menuManager->getTree('test-menu');
+
+		Assert::count(4, $nodes);
+
+		/** @var Entities\Nodes\Node $rootNode */
+		$rootNode = reset($nodes);
+
+		Assert::true($rootNode->getItem() instanceof Entities\Items\IItem);
+		Assert::same(Entities\Items\IItem::ROOT_ID, $rootNode->getId());
+		Assert::same(Entities\Items\IItem::ROOT_NAME, $rootNode->getName());
+
+		Assert::count(2, $rootNode->getChildren());
 	}
 
 	/**
