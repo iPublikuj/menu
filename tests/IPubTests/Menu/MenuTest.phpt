@@ -18,6 +18,8 @@ declare(strict_types = 1);
 namespace IPubTests\Menu;
 
 use Nette;
+use Nette\Application;
+use Nette\Application\UI;
 
 use Tester;
 use Tester\Assert;
@@ -31,6 +33,11 @@ require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.
 class MenuTest extends Tester\TestCase
 {
 	/**
+	 * @var Application\IPresenterFactory
+	 */
+	private $presenterFactory;
+
+	/**
 	 * @var Menu\Managers\MenuManager
 	 */
 	private $menuManager;
@@ -43,6 +50,9 @@ class MenuTest extends Tester\TestCase
 		parent::setUp();
 
 		$dic = $this->createContainer();
+
+		// Get presenter factory from container
+		$this->presenterFactory = $dic->getByType(Application\IPresenterFactory::class);
 
 		// Get extension services
 		$this->menuManager = $dic->getService('menu.managers.menus');
@@ -97,6 +107,14 @@ class MenuTest extends Tester\TestCase
 
 	public function testMenuTree()
 	{
+		// Create test presenter
+		$presenter = $this->createPresenter();
+
+		// Create GET request
+		$request = new Application\Request('Test', 'GET', ['action' => 'default']);
+		// & fire presenter
+		$presenter->run($request);
+
 		$nodes = $this->menuManager->getTree('test-menu');
 
 		Assert::count(4, $nodes);
@@ -112,6 +130,19 @@ class MenuTest extends Tester\TestCase
 	}
 
 	/**
+	 * @return Application\IPresenter
+	 */
+	private function createPresenter() : Application\IPresenter
+	{
+		// Create test presenter
+		$presenter = $this->presenterFactory->createPresenter('Test');
+		// Disable auto canonicalize to prevent redirection
+		$presenter->autoCanonicalize = FALSE;
+
+		return $presenter;
+	}
+
+	/**
 	 * @return Nette\DI\Container
 	 */
 	private function createContainer() : Nette\DI\Container
@@ -121,7 +152,27 @@ class MenuTest extends Tester\TestCase
 
 		Menu\DI\MenuExtension::register($config);
 
+		$version = getenv('NETTE');
+
+		if (!$version || $version == 'default') {
+			$config->addConfig(__DIR__ . DS . 'files' . DS . 'presenters.neon');
+
+		} else {
+			$config->addConfig(__DIR__ . DS . 'files' . DS . 'presenters_2.3.neon');
+		}
+
 		return $config->createContainer();
+	}
+}
+
+class TestPresenter extends UI\Presenter
+{
+	use Menu\TMenu;
+
+	public function renderDefault()
+	{
+		// Set template for component testing
+		$this->template->setFile(__DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'default.latte');
 	}
 }
 
