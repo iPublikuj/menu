@@ -34,11 +34,6 @@ require __DIR__ . DS . 'libs' . DS . 'RouterFactory.php';
 class MenuTest extends Tester\TestCase
 {
 	/**
-	 * @var Application\IPresenterFactory
-	 */
-	private $presenterFactory;
-
-	/**
 	 * @var Application\Application
 	 */
 	private $application;
@@ -56,9 +51,6 @@ class MenuTest extends Tester\TestCase
 		parent::setUp();
 
 		$dic = $this->createContainer();
-
-		// Get presenter factory from container
-		$this->presenterFactory = $dic->getByType(Application\IPresenterFactory::class);
 
 		$this->application = $dic->getByType(Application\Application::class);
 
@@ -130,27 +122,15 @@ class MenuTest extends Tester\TestCase
 
 		Assert::count(2, $nodes);
 
-		/** @var Entities\Nodes\Node $rootNode */
+		/** @var Entities\Nodes\Node $node */
 		$node = reset($nodes);
 
+		Assert::true($node instanceof Entities\Nodes\Node);
 		Assert::true($node->getItem() instanceof Entities\Items\IItem);
 		Assert::same('item-one', $node->getId());
 		Assert::same('Item 1', $node->getName());
 
 		Assert::count(1, $node->getChildren());
-	}
-
-	/**
-	 * @return Application\IPresenter
-	 */
-	private function createPresenter() : Application\IPresenter
-	{
-		// Create test presenter
-		$presenter = $this->presenterFactory->createPresenter('Test');
-		// Disable auto canonicalize to prevent redirection
-		$presenter->autoCanonicalize = FALSE;
-
-		return $presenter;
 	}
 
 	/**
