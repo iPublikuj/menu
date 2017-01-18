@@ -1,6 +1,6 @@
 <?php
 /**
- * IException.php
+ * InvalidStateException.php
  *
  * @copyright      More in license.md
  * @license        http://www.ipublikuj.eu
@@ -9,13 +9,15 @@
  * @subpackage     Exceptions
  * @since          1.0.0
  *
- * @date           2806.15
+ * @date           28.06.15
  */
 
 declare(strict_types = 1);
 
 namespace IPub\Menu\Exceptions;
 
-interface IException
+use Nette;
+
+class InvalidStateException extends Nette\InvalidStateException implements IException
 {
 }

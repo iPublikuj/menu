@@ -4,7 +4,7 @@
 	"description"	: "Extension for Nette Framework to handle site menu items.",
 	"keywords"		: ["nette", "widgets", "tools", "menu", "ipub", "ipublikuj"],
 	"homepage"		: "https://github.com/iPublikuj/menu",
-	"license"		: ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"license"		: ["GPL-2.0", "GPL-3.0"],
 
 	"authors": [
 		{
@@ -19,22 +19,34 @@
 		"issues"	:"https://github.com/iPublikuj/menu/issues"
 	},
 
-	"require": {
-		"php"				: ">=5.4.0",
+	"extra": {
+		"ipub"	: {
+			"configuration" : {
+				"extensions" : {
+					"menu" : "IPub\\Menu\\DI\\MenuExtension"
+				}
+			}
+		}
+	},
 
-		"nette/application"	: "~2.2",
-		"nette/di"			: "~2.2",
-		"nette/utils"		: "~2.2"
+	"require": {
+		"php"	: ">=7.0.0",
+
+		"nette/application"	: "~2.3",
+		"nette/di"			: "~2.3",
+		"nette/utils"		: "~2.3",
+
+		"pds/skeleton"	: "@dev"
 	},
 
 	"require-dev": {
-		"nette/bootstrap"		: "~2.2",
-		"nette/mail"			: "~2.2",
-		"nette/robot-loader"	: "~2.2",
-		"nette/safe-stream"		: "~2.2",
+		"nette/bootstrap"		: "~2.3",
+		"nette/mail"			: "~2.3",
+		"nette/robot-loader"	: "~2.3",
+		"nette/safe-stream"		: "~2.3",
 		"nette/tester"			: "@dev",
-		"tracy/tracy"			: "@dev",
-		"janmarek/mockista"		: "@dev"
+
+		"tracy/tracy"	: "@dev"
 	},
 
 	"autoload": {
