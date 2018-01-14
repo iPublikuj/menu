@@ -14,10 +14,8 @@
 
 namespace IPub\Menu\Filters\Status;
 
-use Nette;
 use Nette\Application;
 
-use IPub;
 use IPub\Menu\Entities;
 use IPub\Menu\Filters;
 
@@ -99,11 +97,20 @@ final class Filter extends Filters\FilterIterator
 	private function checkRule($rule) : bool
 	{
 		try {
-			// Try to check rule if is possible
-			return $this->presenter->isLinkCurrent($rule);
+			if (is_array($rule)) {
+				$link = $this->presenter->link($rule[0], $rule[1]);
+
+				return $this->presenter->link('this') === $link;
+
+			} else {
+				// Try to check rule if is possible
+				return $this->presenter->isLinkCurrent($rule);
+			}
 
 		} catch (Application\UI\InvalidLinkException $e) {
 			// Presenter for checked route does not exists
 		}
+
+		return FALSE;
 	}
 }
