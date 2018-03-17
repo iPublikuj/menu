@@ -30,6 +30,16 @@ use IPub\Menu\Exceptions;
  * @subpackage     Entities
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
+ *
+ * @property string|int $id
+ * @property Entities\Menus\IMenu $menu
+ * @property string|int $parentId
+ * @property string $name
+ * @property string|NULL $label
+ * @property string|array $target
+ * @property int $priority
+ * @property Utils\ArrayHash $attributes
+ * @property Utils\ArrayHash $data
  */
 final class Item implements IItem
 {
