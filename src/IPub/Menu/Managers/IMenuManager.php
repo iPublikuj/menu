@@ -3,8 +3,8 @@
  * MenuManager.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Managers
  * @since          1.0.0
@@ -16,7 +16,6 @@ declare(strict_types = 1);
 
 namespace IPub\Menu\Managers;
 
-use IPub;
 use IPub\Menu\Entities;
 
 /**
@@ -36,16 +35,16 @@ interface IMenuManager extends \ArrayAccess, \IteratorAggregate
 	 *
 	 * @return bool
 	 */
-	public function has($id);
+	public function has($id) : bool;
 
 	/**
 	 * Gets a menu
 	 *
 	 * @param string|int $id
 	 *
-	 * @return Entities\Menus\IMenu
+	 * @return Entities\Menus\IMenu|NULL
 	 */
-	public function get($id);
+	public function get($id) : ?Entities\Menus\IMenu;
 
 	/**
 	 * Helper method for DI connection
@@ -57,7 +56,7 @@ interface IMenuManager extends \ArrayAccess, \IteratorAggregate
 	 *
 	 * @return void
 	 */
-	public function addItem($menu, $item, string $name = NULL, array $parameters = []);
+	public function addItem($menu, $item, string $name = NULL, array $parameters = []) : void;
 
 	/**
 	 * Retrieves menu item tree
@@ -67,5 +66,5 @@ interface IMenuManager extends \ArrayAccess, \IteratorAggregate
 	 *
 	 * @return Entities\Nodes\Node
 	 */
-	public function getTree($menu, array $parameters = []);
+	public function getTree($menu, array $parameters = []) : Entities\Nodes\Node;
 }

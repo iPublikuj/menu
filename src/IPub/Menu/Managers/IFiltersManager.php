@@ -3,8 +3,8 @@
  * IFiltersManager.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Managers
  * @since          1.0.0
@@ -47,7 +47,7 @@ interface IFiltersManager extends \ArrayAccess, \IteratorAggregate
 	 *
 	 * @return Filters\IFactory|NULL
 	 */
-	function get(string $name);
+	function get(string $name) : ?Filters\IFactory;
 
 	/**
 	 * Register a filter class name
@@ -55,13 +55,17 @@ interface IFiltersManager extends \ArrayAccess, \IteratorAggregate
 	 * @param Filters\IFactory $filter
 	 * @param string $name
 	 * @param int $priority
+	 *
+	 * @return void
 	 */
-	function register(Filters\IFactory $filter, string $name, int $priority = 0);
+	function register(Filters\IFactory $filter, string $name, int $priority = 0) : void;
 
 	/**
 	 * Unregisters a filter
 	 *
 	 * @param string $name
+	 *
+	 * @return void
 	 */
-	function unregister(string $name);
+	function unregister(string $name) : void;
 }

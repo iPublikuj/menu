@@ -4,8 +4,8 @@
  * @testCase
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Tests
  * @since          1.0.0
@@ -22,14 +22,13 @@ use Nette;
 use Tester;
 use Tester\Assert;
 
-use IPub;
 use IPub\Menu;
 
 require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 class ExtensionTest extends Tester\TestCase
 {
-	public function testFunctional()
+	public function testFunctional() : void
 	{
 		$dic = $this->createContainer();
 

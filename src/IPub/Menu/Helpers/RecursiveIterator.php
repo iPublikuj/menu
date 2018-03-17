@@ -3,8 +3,8 @@
  * RecursiveIterator.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Helpers
  * @since          1.0.0
@@ -14,7 +14,6 @@
 
 namespace IPub\Menu\Helpers;
 
-use IPub;
 use IPub\Menu\Entities;
 
 final class RecursiveIterator extends \ArrayIterator implements \RecursiveIterator
@@ -32,7 +31,7 @@ final class RecursiveIterator extends \ArrayIterator implements \RecursiveIterat
 	 *
 	 * @return bool
 	 */
-	public function hasChildren()
+	public function hasChildren() : bool
 	{
 		return $this->current()->hasChildren();
 	}

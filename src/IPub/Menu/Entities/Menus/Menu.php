@@ -3,8 +3,8 @@
  * Menu.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Entities
  * @since          1.0.0
@@ -31,8 +31,13 @@ use IPub\Menu\Exceptions;
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-class Menu extends Nette\Object implements IMenu
+class Menu implements IMenu
 {
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
+
 	/**
 	 * @var string
 	 */
@@ -80,7 +85,7 @@ class Menu extends Nette\Object implements IMenu
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setItems(array $items = [])
+	public function setItems(array $items = []) : void
 	{
 		$this->items = new Utils\ArrayHash;
 
@@ -92,7 +97,7 @@ class Menu extends Nette\Object implements IMenu
 	/**
 	 * {@inheritdoc}
 	 */
-	public function addItem(Entities\Items\IItem $item)
+	public function addItem(Entities\Items\IItem $item) : void
 	{
 		$this->items->offsetSet($item->getId(), $item);
 	}

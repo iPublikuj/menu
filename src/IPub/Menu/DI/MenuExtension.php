@@ -3,8 +3,8 @@
  * MenuExtension.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     DI
  * @since          1.0.0
@@ -43,7 +43,7 @@ final class MenuExtension extends DI\CompilerExtension
 	/**
 	 * @return void
 	 */
-	public function loadConfiguration()
+	public function loadConfiguration() : void
 	{
 		// Get container builder
 		$builder = $this->getContainerBuilder();
@@ -53,19 +53,19 @@ final class MenuExtension extends DI\CompilerExtension
 		 */
 
 		$builder->addDefinition($this->prefix('managers.menus'))
-			->setClass(Managers\MenuManager::class);
+			->setType(Managers\MenuManager::class);
 
 		/**
 		 * Menu filters
 		 */
 
 		$builder->addDefinition($this->prefix('managers.filters'))
-			->setClass(Managers\FiltersManager::class)
+			->setType(Managers\FiltersManager::class)
 			->addTag('cms.menu');
 
 		// Menu priority filter
 		$builder->addDefinition($this->prefix('filters.priority'))
-			->setClass(Filters\Priority\Filter::class)
+			->setType(Filters\Priority\Filter::class)
 			->setImplement(Filters\Priority\IFilter::class)
 			->setInject(TRUE)
 			->setTags(['cms.menu', 'cms.menu.filter'])
@@ -73,7 +73,7 @@ final class MenuExtension extends DI\CompilerExtension
 
 		// Menu link filter
 		$builder->addDefinition($this->prefix('filters.link'))
-			->setClass(Filters\Link\Filter::class)
+			->setType(Filters\Link\Filter::class)
 			->setImplement(Filters\Link\IFilter::class)
 			->setInject(TRUE)
 			->setTags(['cms.menu', 'cms.menu.filter'])
@@ -81,7 +81,7 @@ final class MenuExtension extends DI\CompilerExtension
 
 		// Menu status filter
 		$builder->addDefinition($this->prefix('filters.status'))
-			->setClass(Filters\Status\Filter::class)
+			->setType(Filters\Status\Filter::class)
 			->setImplement(Filters\Status\IFilter::class)
 			->setInject(TRUE)
 			->setTags(['cms.menu', 'cms.menu.filter'])
@@ -89,7 +89,7 @@ final class MenuExtension extends DI\CompilerExtension
 
 		// Menu access filter
 		$builder->addDefinition($this->prefix('filters.access'))
-			->setClass(Filters\Access\Filter::class)
+			->setType(Filters\Access\Filter::class)
 			->setImplement(Filters\Access\IFilter::class)
 			->setInject(TRUE)
 			->setTags(['cms.menu', 'cms.menu.filter'])
@@ -99,7 +99,7 @@ final class MenuExtension extends DI\CompilerExtension
 	/**
 	 * {@inheritdoc}
 	 */
-	public function beforeCompile()
+	public function beforeCompile() : void
 	{
 		parent::beforeCompile();
 
@@ -164,7 +164,7 @@ final class MenuExtension extends DI\CompilerExtension
 	 *
 	 * @return void
 	 */
-	public static function register(Nette\Configurator $config, string $extensionName = 'menu')
+	public static function register(Nette\Configurator $config, string $extensionName = 'menu') : void
 	{
 		$config->onCompile[] = function (Nette\Configurator $config, Nette\DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new MenuExtension());

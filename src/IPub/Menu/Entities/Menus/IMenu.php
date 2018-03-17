@@ -3,8 +3,8 @@
  * IMenu.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Entities
  * @since          1.0.0
@@ -41,15 +41,17 @@ interface IMenu extends \ArrayAccess, \IteratorAggregate
 
 	/**
 	 * @param Entities\Items\IItem[] $items
+	 *
+	 * @return void
 	 */
-	function setItems(array $items = []);
+	function setItems(array $items = []) : void;
 
 	/**
 	 * @param Entities\Items\IItem $item
 	 *
 	 * @return void
 	 */
-	function addItem(Entities\Items\IItem $item);
+	function addItem(Entities\Items\IItem $item) : void;
 
 	/**
 	 * @return Entities\Items\IItem[]

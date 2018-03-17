@@ -3,8 +3,8 @@
  * Item.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Entities
  * @since          1.0.0
@@ -31,8 +31,13 @@ use IPub\Menu\Exceptions;
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-final class Item extends Nette\Object implements IItem
+final class Item implements IItem
 {
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
+
 	/**
 	 * @var string|int
 	 */
@@ -131,7 +136,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setParentId($parentId)
+	public function setParentId($parentId) : void
 	{
 		$this->parentId = $parentId;
 	}
@@ -147,7 +152,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getParent()
+	public function getParent() : ?IItem
 	{
 		return $this->menu->hasItem($this->parentId) ? $this->menu->getItem($this->parentId) : NULL;
 	}
@@ -155,7 +160,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setName(string $name)
+	public function setName(string $name) : void
 	{
 		$this->name = $name;
 	}
@@ -171,7 +176,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setLabel(string $label)
+	public function setLabel(string $label) : void
 	{
 		$this->label = $label;
 	}
@@ -187,7 +192,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setTarget($target)
+	public function setTarget($target) : void
 	{
 		$this->target = $target;
 	}
@@ -203,7 +208,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function hasAbsoluteTarget()
+	public function hasAbsoluteTarget() : bool
 	{
 		return $this->getTarget() && is_string($this->getTarget()) && preg_match('/^(http|https)\:\/\//', $this->getTarget()) === 1;
 	}
@@ -211,7 +216,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setPriority(int $priority)
+	public function setPriority(int $priority) : void
 	{
 		$this->priority = $priority;
 	}
@@ -227,7 +232,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setAttributes(array $attributes)
+	public function setAttributes(array $attributes) : void
 	{
 		$this->attributes = new Utils\ArrayHash;
 
@@ -239,7 +244,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setAttribute(string $name, $value)
+	public function setAttribute(string $name, $value) : void
 	{
 		$this->attributes->offsetSet($name, $value);
 	}
@@ -279,7 +284,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getLink()
+	public function getLink() : ?string
 	{
 		return $this->hasAbsoluteTarget() ? $this->getTarget() : $this->getAttribute('link', NULL);
 	}
@@ -315,7 +320,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setData(array $data)
+	public function setData(array $data) : void
 	{
 		$this->data = new Utils\ArrayHash;
 
@@ -327,7 +332,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function addData(string $name, $value)
+	public function addData(string $name, $value) : void
 	{
 		$this->data->offsetSet($name, $value);
 	}
@@ -343,7 +348,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getIcon()
+	public function getIcon() : ?string
 	{
 		return $this->hasIcon() ? $this->getData('icon') : NULL;
 	}
@@ -351,7 +356,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setIcon(string $icon)
+	public function setIcon(string $icon) : void
 	{
 		$this->addData('icon', $icon);
 	}
@@ -367,7 +372,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getCounter()
+	public function getCounter() : ?int
 	{
 		return $this->hasCounter() ? $this->getData('counter') : NULL;
 	}
@@ -375,7 +380,7 @@ final class Item extends Nette\Object implements IItem
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setCounter(int $count)
+	public function setCounter(int $count) : void
 	{
 		$this->addData('counter', $count);
 	}

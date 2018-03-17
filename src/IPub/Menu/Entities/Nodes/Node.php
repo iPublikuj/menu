@@ -3,8 +3,8 @@
  * Node.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Entities
  * @since          5.0
@@ -21,8 +21,13 @@ use IPub\Menu\Entities;
 use IPub\Menu\Exceptions;
 use IPub\Menu\Helpers;
 
-final class Node extends Nette\Object implements \IteratorAggregate, \Countable
+final class Node implements \IteratorAggregate, \Countable
 {
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
+
 	/**
 	 * @var Entities\Items\IItem
 	 */
@@ -57,7 +62,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	/**
 	 * @return Entities\Items\IItem
 	 */
-	public function getItem()
+	public function getItem() : Entities\Items\IItem
 	{
 		return $this->item;
 	}
@@ -69,7 +74,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	 *
 	 * @throws Exceptions\InvalidArgumentException
 	 */
-	public function setParent(Node $parent = NULL)
+	public function setParent(Node $parent = NULL) : void
 	{
 		if ($parent === $this) {
 			throw new Exceptions\InvalidArgumentException('A node cannot have itself as a parent');
@@ -93,7 +98,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	/**
 	 * @return Node|NULL
 	 */
-	public function getParent()
+	public function getParent() : ?Node
 	{
 		return $this->parent;
 	}
@@ -103,7 +108,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	 *
 	 * @return void
 	 */
-	public function setChildren(array $nodes)
+	public function setChildren(array $nodes) : void
 	{
 		foreach ($nodes as $node) {
 			$this->addChild($node);
@@ -115,7 +120,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	 *
 	 * @return void
 	 */
-	public function addChild(Node $node)
+	public function addChild(Node $node) : void
 	{
 		$node->setParent($this);
 
@@ -125,7 +130,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	/**
 	 * @return bool
 	 */
-	public function hasChildren()
+	public function hasChildren() : bool
 	{
 		return !empty($this->children);
 	}
@@ -133,7 +138,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	/**
 	 * @return Node[]
 	 */
-	public function getChildren()
+	public function getChildren() : array
 	{
 		return $this->children;
 	}
@@ -192,7 +197,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	 *
 	 * @return Node|NULL
 	 */
-	public function findChild($hash, $recursive = TRUE)
+	public function findChild($hash, bool $recursive = TRUE) : ?Node
 	{
 		$node = isset($this->children[$hash]) ? $this->children[$hash] : NULL;
 
@@ -213,7 +218,7 @@ final class Node extends Nette\Object implements \IteratorAggregate, \Countable
 	 *
 	 * @return bool
 	 */
-	public function contains($node, $recursive = TRUE)
+	public function contains($node, bool $recursive = TRUE) : bool
 	{
 		return $this->findChild(($node instanceof Node ? $node->hashCode() : (string) $node), $recursive) !== NULL;
 	}

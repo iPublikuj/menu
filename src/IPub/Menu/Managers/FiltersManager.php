@@ -3,8 +3,8 @@
  * FilterManager.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Managers
  * @since          1.0.0
@@ -18,7 +18,6 @@ namespace IPub\Menu\Managers;
 
 use Nette;
 
-use IPub;
 use IPub\Menu\Exceptions;
 use IPub\Menu\Filters;
 
@@ -30,8 +29,13 @@ use IPub\Menu\Filters;
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-final class FiltersManager extends Nette\Object implements IFiltersManager
+final class FiltersManager implements IFiltersManager
 {
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
+
 	/**
 	 * @var \SplPriorityQueue
 	 */
@@ -58,7 +62,7 @@ final class FiltersManager extends Nette\Object implements IFiltersManager
 	/**
 	 * {@inheritdoc}
 	 */
-	public function get(string $name)
+	public function get(string $name) : ?Filters\IFactory
 	{
 		return $this->has($name) ? $this->factories[$name] : NULL;
 	}
@@ -66,7 +70,7 @@ final class FiltersManager extends Nette\Object implements IFiltersManager
 	/**
 	 * {@inheritdoc}
 	 */
-	public function register(Filters\IFactory $filter, string $name, int $priority = 0)
+	public function register(Filters\IFactory $filter, string $name, int $priority = 0) : void
 	{
 		$this->unregister($name);
 
@@ -77,7 +81,7 @@ final class FiltersManager extends Nette\Object implements IFiltersManager
 	/**
 	 * {@inheritdoc}
 	 */
-	public function unregister(string $name)
+	public function unregister(string $name) : void
 	{
 		if ($this->has($name)) {
 			unset($this->factories[$name]);

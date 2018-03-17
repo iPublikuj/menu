@@ -3,8 +3,8 @@
  * IItem.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Entities
  * @since          1.0.0
@@ -32,8 +32,8 @@ use IPub\Menu\Entities;
  */
 interface IItem
 {
-	const ROOT_ID = 'root';
-	const ROOT_NAME = 'root';
+	public const ROOT_ID = 'root';
+	public const ROOT_NAME = 'root';
 
 	/**
 	 * @return string|int
@@ -50,7 +50,7 @@ interface IItem
 	 *
 	 * @return void
 	 */
-	function setParentId($parentId);
+	function setParentId($parentId) : void;
 
 	/**
 	 * @return string|int
@@ -60,14 +60,14 @@ interface IItem
 	/**
 	 * @return IItem|NULL
 	 */
-	function getParent();
+	function getParent() : ?IItem;
 
 	/**
 	 * @param string
 	 *
 	 * @return void
 	 */
-	function setName(string $name);
+	function setName(string $name) : void;
 
 	/**
 	 * @return string
@@ -79,7 +79,7 @@ interface IItem
 	 *
 	 * @return void
 	 */
-	function setLabel(string $label);
+	function setLabel(string $label) : void;
 
 	/**
 	 * @return string
@@ -91,7 +91,7 @@ interface IItem
 	 *
 	 * @return void
 	 */
-	function setTarget($target);
+	function setTarget($target) : void;
 
 	/**
 	 * @return string|array|NULL
@@ -101,14 +101,14 @@ interface IItem
 	/**
 	 * @return bool
 	 */
-	function hasAbsoluteTarget();
+	function hasAbsoluteTarget() : bool;
 
 	/**
 	 * @param int $priority
 	 *
 	 * @return void
 	 */
-	function setPriority(int $priority);
+	function setPriority(int $priority) : void;
 
 	/**
 	 * @return int
@@ -120,7 +120,7 @@ interface IItem
 	 *
 	 * @return void
 	 */
-	function setAttributes(array $attributes);
+	function setAttributes(array $attributes) : void;
 
 	/**
 	 * @param string $name
@@ -128,7 +128,7 @@ interface IItem
 	 *
 	 * @return void
 	 */
-	function setAttribute(string $name, $value);
+	function setAttribute(string $name, $value) : void;
 
 	/**
 	 * @return Utils\ArrayHash
@@ -156,7 +156,7 @@ interface IItem
 	/**
 	 * @return string|NULL
 	 */
-	function getLink();
+	function getLink() : ?string;
 
 	/**
 	 * @param bool $default
@@ -184,7 +184,7 @@ interface IItem
 	 *
 	 * @return void
 	 */
-	function setData(array $data);
+	function setData(array $data) : void;
 
 	/**
 	 * @param string $name
@@ -192,7 +192,7 @@ interface IItem
 	 *
 	 * @return void
 	 */
-	function addData(string $name, $value);
+	function addData(string $name, $value) : void;
 
 	/**
 	 * @return bool
@@ -202,14 +202,14 @@ interface IItem
 	/**
 	 * @return string|NULL
 	 */
-	function getIcon();
+	function getIcon() : ?string;
 
 	/**
 	 * @param string $icon
 	 *
 	 * @return void
 	 */
-	function setIcon(string $icon);
+	function setIcon(string $icon) : void;
 
 	/**
 	 * @return bool
@@ -219,12 +219,12 @@ interface IItem
 	/**
 	 * @return int|NULL
 	 */
-	function getCounter();
+	function getCounter() : ?int;
 
 	/**
 	 * @param int $count
 	 *
 	 * @return void
 	 */
-	function setCounter(int $count);
+	function setCounter(int $count) : void;
 }

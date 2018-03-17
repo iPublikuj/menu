@@ -3,8 +3,8 @@
  * MenuManager.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Managers
  * @since          1.0.0
@@ -30,8 +30,13 @@ use IPub\Menu\Entities;
  *
  * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  */
-final class MenuManager extends Nette\Object implements IMenuManager
+final class MenuManager implements IMenuManager
 {
+	/**
+	 * Implement nette smart magic
+	 */
+	use Nette\SmartObject;
+
 	/**
 	 * @var Entities\Menus\IMenu[]|Utils\ArrayHash
 	 */
@@ -56,7 +61,7 @@ final class MenuManager extends Nette\Object implements IMenuManager
 	/**
 	 * {@inheritdoc}
 	 */
-	public function has($id)
+	public function has($id) : bool
 	{
 		return $this->menus->offsetExists($id);
 	}
@@ -64,7 +69,7 @@ final class MenuManager extends Nette\Object implements IMenuManager
 	/**
 	 * {@inheritdoc}
 	 */
-	public function get($id)
+	public function get($id) : ?Entities\Menus\IMenu
 	{
 		// Only lower case chars are allowed
 		$id = strtolower($id);
@@ -84,7 +89,7 @@ final class MenuManager extends Nette\Object implements IMenuManager
 	/**
 	 * {@inheritdoc}
 	 */
-	public function addItem($menu, $item, string $name = NULL, array $attributes = [], array $data = [])
+	public function addItem($menu, $item, string $name = NULL, array $attributes = [], array $data = []) : void
 	{
 		if (!$menu instanceof Entities\Menus\IMenu) {
 			$menu = $this->get($menu);
@@ -103,7 +108,7 @@ final class MenuManager extends Nette\Object implements IMenuManager
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getTree($menu, array $parameters = [])
+	public function getTree($menu, array $parameters = []) : Entities\Nodes\Node
 	{
 		if (!$menu instanceof Entities\Menus\IMenu) {
 			$menu = $this->get($menu);

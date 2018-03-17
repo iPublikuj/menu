@@ -3,8 +3,8 @@
  * TMenu.php
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     common
  * @since          1.0.0
@@ -16,7 +16,6 @@ declare(strict_types = 1);
 
 namespace IPub\Menu;
 
-use IPub;
 use IPub\Menu\Managers;
 
 /**
@@ -39,7 +38,7 @@ trait TMenu
 	 *
 	 * @return void
 	 */
-	public function injectMenu(Managers\MenuManager $menuManager)
+	public function injectMenu(Managers\MenuManager $menuManager) : void
 	{
 		$this->menuManager = $menuManager;
 	}

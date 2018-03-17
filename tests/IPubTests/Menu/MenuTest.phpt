@@ -4,8 +4,8 @@
  * @testCase
  *
  * @copyright      More in license.md
- * @license        http://www.ipublikuj.eu
- * @author         Adam Kadlec http://www.ipublikuj.eu
+ * @license        https://www.ipublikuj.eu
+ * @author         Adam Kadlec https://www.ipublikuj.eu
  * @package        iPublikuj:Menu!
  * @subpackage     Tests
  * @since          1.0.0
@@ -24,7 +24,6 @@ use Nette\Application\UI;
 use Tester;
 use Tester\Assert;
 
-use IPub;
 use IPub\Menu;
 use IPub\Menu\Entities;
 
@@ -46,7 +45,7 @@ class MenuTest extends Tester\TestCase
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setUp()
+	public function setUp() : void
 	{
 		parent::setUp();
 
@@ -107,7 +106,7 @@ class MenuTest extends Tester\TestCase
 		]);
 	}
 
-	public function testMenuContainer()
+	public function testMenuContainer() : void
 	{
 		/** @var Entities\Menus\IMenu $menuContainer */
 		$menuContainer = $this->menuManager->get('test-menu');
@@ -118,7 +117,7 @@ class MenuTest extends Tester\TestCase
 		Assert::count(4, $menuContainer->getItems());
 	}
 
-	public function testMenuTree()
+	public function testMenuTree() : void
 	{
 		$_SERVER['HTTP_HOST'] = $_SERVER['SERVER_NAME'] = 'www.ipublikuj.eu';
 
@@ -160,12 +159,7 @@ class MenuTest extends Tester\TestCase
 
 		$version = getenv('NETTE');
 
-		if (!$version || $version == 'default') {
-			$config->addConfig(__DIR__ . DS . 'files' . DS . 'presenters.neon');
-
-		} else {
-			$config->addConfig(__DIR__ . DS . 'files' . DS . 'presenters_2.3.neon');
-		}
+		$config->addConfig(__DIR__ . DS . 'files' . DS . 'presenters.neon');
 
 		return $config->createContainer();
 	}
@@ -175,7 +169,7 @@ class TestPresenter extends UI\Presenter
 {
 	use Menu\TMenu;
 
-	public function renderDefault()
+	public function renderDefault() : void
 	{
 		// Set template for component testing
 		$this->template->setFile(__DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'default.latte');
