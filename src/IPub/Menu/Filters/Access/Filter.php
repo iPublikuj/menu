@@ -4,7 +4,7 @@
  *
  * @copyright      More in license.md
  * @license        https://www.ipublikuj.eu
- * @author         Adam Kadlec https://www.ipublikuj.eu
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:Menu!
  * @subpackage     Filters
  * @since          1.0.0
@@ -198,7 +198,7 @@ final class Filter extends Filters\FilterIterator
 
 		$permissionDelimiter = ':';
 
-		if (interface_exists(IPub\Permissions\Entities\IPermission::class)) {
+		if (interface_exists('\IPub\Permissions\Entities\IPermission')) {
 			$permissionDelimiter = IPub\Permissions\Entities\IPermission::DELIMITER;
 		}
 

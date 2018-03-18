@@ -4,7 +4,7 @@
  *
  * @copyright      More in license.md
  * @license        https://www.ipublikuj.eu
- * @author         Adam Kadlec https://www.ipublikuj.eu
+ * @author         Adam Kadlec <adam.kadlec@ipublikuj.eu>
  * @package        iPublikuj:Menu!
  * @subpackage     Entities
  * @since          1.0.0
@@ -280,7 +280,7 @@ final class Item implements IItem
 	 */
 	public function isActive() : bool
 	{
-		return $this->getAttribute('isActive', FALSE);
+		return (bool) $this->getAttribute('isActive', FALSE);
 	}
 
 	/**
@@ -288,7 +288,7 @@ final class Item implements IItem
 	 */
 	public function isVisible() : bool
 	{
-		return $this->getAttribute('isVisible', FALSE);
+		return (bool) $this->getAttribute('isVisible', FALSE);
 	}
 
 	/**
@@ -304,7 +304,7 @@ final class Item implements IItem
 	 */
 	public function hasAccess(bool $default = TRUE) : bool
 	{
-		return $this->getAttribute('isAllowed', $default);
+		return (bool) $this->getAttribute('isAllowed', $default);
 	}
 
 	/**
@@ -360,7 +360,7 @@ final class Item implements IItem
 	 */
 	public function getIcon() : ?string
 	{
-		return $this->hasIcon() ? $this->getData('icon') : NULL;
+		return $this->hasIcon() ? (string) $this->getData('icon') : NULL;
 	}
 
 	/**
@@ -384,7 +384,7 @@ final class Item implements IItem
 	 */
 	public function getCounter() : ?int
 	{
-		return $this->hasCounter() ? $this->getData('counter') : NULL;
+		return $this->hasCounter() ? (int) $this->getData('counter') : NULL;
 	}
 
 	/**
