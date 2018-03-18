@@ -19,7 +19,6 @@ namespace IPub\Menu\Entities\Menus;
 use Nette;
 use Nette\Utils;
 
-use IPub;
 use IPub\Menu\Entities;
 use IPub\Menu\Exceptions;
 

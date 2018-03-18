@@ -19,7 +19,6 @@ namespace IPub\Menu\Managers;
 use Nette;
 use Nette\Utils;
 
-use IPub;
 use IPub\Menu\Entities;
 
 /**

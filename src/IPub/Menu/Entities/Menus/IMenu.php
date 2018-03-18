@@ -16,7 +16,6 @@ declare(strict_types = 1);
 
 namespace IPub\Menu\Entities\Menus;
 
-use IPub;
 use IPub\Menu\Entities;
 
 /**

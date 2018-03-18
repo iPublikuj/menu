@@ -16,7 +16,6 @@ namespace IPub\Menu\Entities\Nodes;
 
 use Nette;
 
-use IPub;
 use IPub\Menu\Entities;
 use IPub\Menu\Exceptions;
 use IPub\Menu\Helpers;
