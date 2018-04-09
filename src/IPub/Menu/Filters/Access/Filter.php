@@ -19,6 +19,7 @@ namespace IPub\Menu\Filters\Access;
 use Nette\Utils;
 use Nette\Security as NS;
 
+use IPub;
 use IPub\Menu\Entities;
 use IPub\Menu\Exceptions;
 use IPub\Menu\Filters;
