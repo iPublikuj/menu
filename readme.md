@@ -1,11 +1,9 @@
 # Menu
 
-[![Build Status](https://img.shields.io/travis/iPublikuj/menu.svg?style=flat-square)](https://travis-ci.org/iPublikuj/menu)
-[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/iPublikuj/menu.svg?style=flat-square)](https://scrutinizer-ci.com/g/iPublikuj/menu/?branch=master)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/iPublikuj/menu.svg?style=flat-square)](https://scrutinizer-ci.com/g/iPublikuj/menu/?branch=master)
-[![Latest Stable Version](https://img.shields.io/packagist/v/ipub/menu.svg?style=flat-square)](https://packagist.org/packages/ipub/menu)
-[![Composer Downloads](https://img.shields.io/packagist/dt/ipub/menu.svg?style=flat-square)](https://packagist.org/packages/ipub/menu)
-[![License](https://img.shields.io/packagist/l/ipub/menu.svg?style=flat-square)](https://packagist.org/packages/ipub/menu)
+
+**This package is abandoned and no longer maintained!**
+
+
 
 Web page **menu** items manager for [Nette Framework](http://nette.org/)
 
